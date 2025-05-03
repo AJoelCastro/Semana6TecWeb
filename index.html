@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Morat</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+
+</head>
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white">
+    <div class=" m-4 pb-8 ">
+      <nav class="z-50 bg-white dark:bg-gray-700 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"> 
+        
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <a href="Registrarse.html" class="text-white bg-red-700 font-bold hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center dark:bg-orange-600 dark:hover:bg-red-700 dark:focus:ring-orange-800">Registrarse</a>
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+              <span class="sr-only">-</span>
+              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+              </svg>
+          </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+          <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-700 dark:border-gray-700">
+            <li>
+              <a href="#" class="block py-2 px-3 text-white font-bold bg-orange-700 rounded md:bg-transparent md:text-orange-600 md:p-0 dark:text-orange-500 hover:bg-orange-500" aria-current="page">INICIO</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-black dark:hover:bg-gray-800 dark:hover:text-orange  md:dark:hover:bg-transparent dark:text-white">DESTINOS</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-black dark:hover:bg-gray-800 dark:hover:text-red md:dark:hover:bg-transparent dark:border-gray-700 dark:text-white">AGENCIAS</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-black dark:hover:bg-gray-800 dark:hover:text-red md:dark:hover:bg-transparent dark:border-gray-700 dark:text-white">SERVICIOS</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-black dark:hover:bg-gray-800 dark:hover:text-red md:dark:hover:bg-transparent dark:border-gray-700 dark:text-white">CONTÁCTANOS</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </div>
+
+    <!--BOTON-->
+<div class="relative pt-5">
+  <div class="absolute top-0 right-0 pt-5">
+    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 shadow-2xl">
+      <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+      <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+  </button>
+  </div> 
+</div>
+
+    
+    <!--inicio carrusel-->
+    <div class="container mx-auto my-10">
+      <div id="default-carousel" class="relative w-full h-full z-40 " data-carousel="slide">
+      <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96 ">
+          <!-- Item 1 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="imagenes/morat1.png" class="absolute object-countain block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+          </div>
+          <!-- Item 2 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="imagenes/morat2.png" class="absolute object-countain block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+          </div>
+          <!-- Item 3 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="imagenes/morat3.png" class="absolute object-countain  block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+          </div>
+          <!-- Item 4 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="imagenes/morat4.png" class="absolute object-countain block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+          </div>
+
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+          
+        </div>
+        <!-- Slider controls -->
+        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+              <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+              </svg>
+              <span class="sr-only">-</span>
+          </span>
+        </button>
+        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+              <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <span class="sr-only">Next</span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <!--fin carrusel-->
+
+      <!--inicio imagen y texto-->    
+      <div class="container mx-auto my-10 ">
+        <div role="status" class="space-y-8 md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
+          <div class="flex items-center justify-center w-full h-96  rounded sm:w-full md:h-128 bg-white">
+
+                <img src="imagenes/image.png" class="max-w-full max-h-full object-cover p-0 transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 " alt="">
+            </div>
+            <div class="w-full md:w-full text-center md:text-left md:ml-8 "> 
+                <h3 class="text-2xl mb-4 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start text-black dark:text-white">Morat</h3>
+                <p class="text-gray-800 dark:text-white">Morat es la banda de pop latino favorita del momento. Los integrantes de Morat tienen una personalidad única, ingrediente para que la banda funcione con un estilo lleno de sentimiento y pasión.</p>
+                <p class="text-gray-800 mt-4 dark:text-white">Aunque cada uno tenga su propia personalidad, juntos han sabido plasmar eso especial que hace a Morat.</p>
+            </div>
+            
+        </div>
+    </div>
+    <!--fin imagen y texto-->
+
+
+
+<!-- Inicio de servicios -->
+<div class="container mx-auto my-10">
+  <h2 class="text-2xl font-bold text-center mb-6">MIEMBROS</h2>
+  <div class="flex flex-wrap justify-around items-center">
+
+    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden m-4 dark:bg-gray-700">
+      <!-- Proporción fija -->
+      <div class="w-full aspect-w-16 aspect-h-9">
+        <img class="w-full h-full object-cover" src="imagenes/martin.jpg" alt="Martin Vargas">
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-bold mb-2 text-center">Martin Vargas</h3>
+        <p class="text-gray-700 text-center dark:text-white">
+          Vocalista y bajista de Morat, también maneja los sintetizadores. Es escritor, en 2020 presentó su primer libro "A la orilla de la Luz".
+        </p>
+        <button class="bg-orange-500 text-white px-4 py-2 mt-2 block mx-auto">MÁS INFORMACIÓN</button>
+      </div>
+    </div>
+
+    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden m-4 dark:bg-gray-700">
+      <!-- Proporción fija -->
+      <div class="w-full aspect-w-16 aspect-h-9">
+        <img class="w-full h-full object-cover" src="imagenes/Juan.jpg" alt="Sofá Cama">
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-bold mb-2 text-center">Juan Pablo Isaza Piñeros</h3>
+        <p class="text-gray-700 text-center dark:text-white">
+          Vocalista principal y guitarrista de Morat, también toca piano y está estudiando una segunda carrera con énfasis musical(segunda carrera).
+        </p>
+        <button class="bg-orange-500 text-white px-4 py-2 mt-2 block mx-auto">MÁS INFORMACIÓN</button>
+      </div>
+    </div>
+
+    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden m-4 dark:bg-gray-700">
+      <!-- Proporción fija -->
+      <div class="w-full aspect-w-16 aspect-h-9">
+        <img class="w-full h-full object-cover" src="imagenes/JuanPablo.jpg" alt="Sofá Cama">
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-bold mb-2 text-center">Juan Pablo Villamil Cortés</h3>
+        <p class="text-gray-700 text-center dark:text-white">
+          Vocalista y músico de banjo conocido por formar parte de la banda colombiana de pop Morat. Sobre El Amor y Sus Efectos Secundarios.
+        </p>
+        <button class="bg-orange-500 text-white px-4 py-2 mt-2 block mx-auto">MÁS INFORMACIÓN</button>
+      </div>
+    </div>
+
+    <div class="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden m-4 dark:bg-gray-700">
+      <!-- Proporción fija -->
+      <div class="w-full aspect-w-16 aspect-h-9">
+        <img class="w-full h-full object-cover" src="imagenes/simon.jpg" alt="Sofá Cama">
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-bold mb-2 text-center">Simón Vargas Morales</h3>
+        <p class="text-gray-700 text-center dark:text-white">
+          Vocalista y bajista de Morat, también maneja los sintetizadores. Es escritor, en 2020 presentó su primer libro "A la orilla de la Luz".
+        </p>
+        <button class="bg-orange-500 text-white px-4 py-2 mt-2 block mx-auto">MÁS INFORMACIÓN</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Fin de Servicios -->
+
+
+
+<div class="container mx-auto my-10">
+  <h2 class="text-2xl font-bold text-center mb-6">SUS MEJORES EXITOS</h2>
+</div>
+          <!--Inicio de cajas-->
+          <div class="container mx-auto my-10">
+            <div class="flex flex-wrap justify-around items-center">
+              <!-- Tarjeta 1 -->
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion1.png" alt="Una vez más">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Una vez más</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+          
+              <!-- Tarjeta 2 -->
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion2.png" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion3.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion4.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion5.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion6.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion7.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+              <div class="max-w-xs h-80 bg-white dark:bg-gray-600 rounded-lg shadow-lg overflow-hidden m-4">
+                <img class="w-full h-full object-cover" src="imagenes/cancion8.jpg" alt="Punto y aparte">
+                <div class="p-4">
+                  <h3 class="text-2xl font-bold mb-2 text-center">Punto y aparte</h3>
+                  <p class="text-gray-700 text-center"></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!--Fin cajas-->
+
+    <!--Opiniones--
+    
+    <figure class="max-w-screen-md mx-auto text-center">
+      <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+          <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
+      </svg>
+      <blockquote>
+          <p class="text-2xl italic font-medium text-gray-900 dark:text-white">" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore reprehenderit nisi architecto facilis delectus odio quam officia omnis illum rem! "
+            "</p>
+      </blockquote>
+      <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
+          <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+          <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
+              <cite class="pe-3 font-medium text-gray-900 dark:text-white">Persona 1</cite>
+              <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">Ocupación</cite>
+          </div>
+      </figcaption>
+    </figure> -->
+    
+    <div id="testimonial-carousel" class="relative w-full max-w-screen-lg mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-6">Testimonios</h2>
+      <!-- Carrusel -->
+      <div class="overflow-hidden relative">
+          <!-- Testimonios -->
+          <div class="flex transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+              <!-- Testimonio 1 -->
+              <div class="w-full flex-shrink-0 text-center px-4">
+                  <figure>
+                      <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                          <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                      </svg>
+                      <blockquote>
+                          <p class="text-2xl italic font-medium text-gray-900 dark:text-white">"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                      </blockquote>
+                      <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
+                          <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+                          <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
+                              <cite class="pe-3 font-medium text-gray-900 dark:text-white">Persona 1</cite>
+                              <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">Ocupación</cite>
+                          </div>
+
+                          <!--Estrellita-->
+                          <div class="flex items-center">
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">4.95</p>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">de</p>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">5</p>
+                        </div>
+                        <!--Fin estrellita-->
+                      </figcaption>
+                  </figure>
+              </div>
+              <!-- Testimonio 2 -->
+              <div class="w-full flex-shrink-0 text-center px-4">
+                  <figure>
+                      <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                          <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                      </svg>
+                      <blockquote>
+                          <p class="text-2xl italic font-medium text-gray-900 dark:text-white">" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque explicabo magnam unde, cum molestias est laudantium commodi deleniti fugiat maxime consequatur magni sed voluptate dignissimos numquam blanditiis neque, dolore maiores. "</p>
+                      </blockquote>
+                      <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
+                          <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png" alt="profile picture">
+                          <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
+                              <cite class="pe-3 font-medium text-gray-900 dark:text-white">Persona 2</cite>
+                              <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">Ocupación</cite>
+                          </div>
+                           <!--Estrellita-->
+                           <div class="flex items-center">
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">5</p>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">de</p>
+                            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">5</p>
+                        </div>
+                        <!--Fin estrellita-->
+                      </figcaption>
+                  </figure>
+              </div>
+              <!-- Testimonio 3 -->
+              <div class="w-full flex-shrink-0 text-center px-4">
+                <figure>
+                    <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                        <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                    </svg>
+                    <blockquote>
+                        <p class="text-2xl italic font-medium text-gray-900 dark:text-white">" Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente labore dolor, neque quam magni architecto! "</p>
+                    </blockquote>
+                    <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
+                        <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="profile picture">
+                        <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
+                            <cite class="pe-3 font-medium text-gray-900 dark:text-white">Persona 3</cite>
+                            <cite class="ps-3 text-sm text-gray-500 dark:text-gray-400">Ocupación</cite>
+                        </div>
+                         <!--Estrellita-->
+                         <div class="flex items-center">
+                          <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">4</p>
+                          <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">de</p>
+                          <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-100">5</p>
+                      </div>
+                      <!--Fin estrellita-->
+                    </figcaption>
+                </figure>
+            </div>
+          </div>
+      </div>
+      <!-- Botones -->
+      <div class="flex justify-center mt-4 space-x-3">
+          <button class="w-3 h-3 bg-gray-300 rounded-full dark:bg-gray-600" onclick="changeSlide(0)"></button>
+          <button class="w-3 h-3 bg-gray-300 rounded-full dark:bg-gray-600" onclick="changeSlide(1)"></button>
+          <button class="w-3 h-3 bg-gray-300 rounded-full dark:bg-gray-600" onclick="changeSlide(2)"></button>
+      </div>
+    </div>
+    <!--Fin opiniones-->
+
+    <!-- Formulario -->
+    <section id="contacto" class="my-8 text-center">
+      <div class="container mx-auto">
+          <h2 class="text-2xl font-bold text-black dark:text-white">Suscríbete</h2>
+          <form class="mt-4">
+            <input type="email" placeholder="Tu correo electrónico" class="border p-2 w-full md:w-1/2 mx-auto border-black bg-white">
+                <button type="submit" class="bg-orange-500 text-white px-4 py-2 mt-2">Enviar</button>
+          </form>
+      </div>
+    </section>
+
+    <!--Mapa-->
+    <section class="text-gray-600 body-font relative">
+
+
+      <div class="container px-5 py-10 mx-auto text-center">
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-3">NUESTRA PROXIMA GIRA</h2>
+        <p class="leading-relaxed mb-3 text-gray-600 dark:text-white">Visítanos en la Universidad Nacional de Trujillo, ubicada en Trujillo, Perú.</p>
+        <p class="text-gray-600 mb-3 dark:text-white">Dirección: Av. Juan Pablo II, Trujillo, Perú</p>
+        <a href="https://www.google.com.pe/maps/place/Universidad+Nacional+de+Trujillo+(UNT)/@-8.1153331,-79.0545072,15z/data=!4m10!1m2!2m1!1sUniversidad+nacional+de+trujillo!3m6!1s0x91ad3d9fb3467261:0x752547ad9a204df6!8m2!3d-8.1153331!4d-79.0380277!15sCiBVbml2ZXJzaWRhZCBuYWNpb25hbCBkZSB0cnVqaWxsb5IBEXB1YmxpY191bml2ZXJzaXR54AEA!16s%2Fm%2F02pzng6?hl=es-419&entry=ttu&g_ep=EgoyMDI0MTExNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-indigo-500 hover:text-indigo-600 text-lg dark:text-blue-500">Ver en Google Maps</a>
+      </div>
+
+      <div class="container mx-auto px-4 py-10 flex justify-center">
+        <!-- Dirección de la Universidad Nacional de Trujillo -->
+        <iframe class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-80" 
+                src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=Universidad%20Nacional%20de%20Trujillo%2C%20Trujillo%2C%20Per%C3%BA&ie=UTF8&t=&z=14&iwloc=B&output=embed" 
+                style="max-width: 900px; margin: 0 auto; border:0;" 
+                frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    
+      
+    </section>
+    <!--Fin Mapa-->
+
+    <!--Boton de wtsp, https://www.whatsapp.com/-->
+    <a href="https://wa.me/+51934838972?text=Me%20gustaría%20saber%20el%20precio%20del%20coche" class="w-20 h-20 fixed bottom-10 right-10 bg-green-500 text-white rounded-full text-center text-3xl z-50 flex items-center justify-center hover:scale-110 transform transition-transform duration-300 shadow-lg" target="_blank"> 
+      <i class="fa fa-whatsapp mt-13px"></i>
+    </a>
+
+    
+    <footer class="bg-orange-600 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left">
+
+          <div class="w-full sm:w-1/2 lg:w-1/4 mb-6">
+            <h4 class="text-xl font-bold mb-4">Contacto</h4>
+            <p>Dirección: Av. Juan Pablo II, Trujillo 13011</p>
+            <p>Teléfono: (044) 284644</p>
+            <p>Email: interprovincial@gmail.com</p>
+          </div>
+          <div class="w-full sm:w-1/2 lg:w-1/4 mb-6">
+            <h4 class="text-xl font-bold mb-4">Enlaces</h4>
+            <ul>
+              <li><a href="#" class="hover:text-yellow-500">Inicio</a></li>
+              <li><a href="#" class="hover:text-yellow-500">Destinos</a></li>
+              <li><a href="#" class="hover:text-yellow-500">Agencias</a></li>
+              <li><a href="#" class="hover:text-yellow-500">Servicios</a></li>
+              <li><a href="#" class="hover:text-yellow-500">Contáctanos</a></li>
+              <li><a href="#" class="hover:text-yellow-500">Iniciar Sesión</a></li>
+            </ul>
+          </div>
+          <div class="w-full sm:w-1/2 lg:w-1/4 mb-6">
+            <h4 class="text-xl font-bold mb-4">Horarios de Atención</h4>
+            <p>Lun a Vie 9:00 am a 6:00 pm</p>
+            <p>Sábados 10:00 am a 2:00 pm</p>
+          </div>
+          <div class="w-full sm:w-1/2 lg:w-1/4 mb-6">
+            <h4 class="text-xl font-bold mb-4">Síguenos</h4>
+            <div class="flex justify-center md:justify-start space-x-4">
+              <a href="https://www.facebook.com/" class="hover:text-yellow-500" target="_blank" >Facebook</a>
+              <a href="https://x.com/" class="hover:text-yellow-500" target="_blank">Twitter</a>
+              <a href="https://www.instagram.com/" class="hover:text-yellow-500" target="_blank">Instagram</a>
+            </div>
+          </div>
+          
+        </div>
+        <div class="w-full mx-auto max-w-screen-xl p-4 flex items-center justify-center">
+          <span class="text-lg text-white text-center dark:text-white">
+              © 2024 Itsabus</a>. Todos los derechos reservados.
+          </span>
+      </div>
+      </div>
+    </footer>
+  
+
+
+
+ 
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function () {
+        var mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+
+    <script>
+      let currentSlide = 0;
+      const totalSlides = 2; // Cambia este número según la cantidad de testimonios
+      const carousel = document.querySelector('#testimonial-carousel .flex');
+
+      function changeSlide(slideIndex) {
+          currentSlide = slideIndex;
+          updateCarousel();
+      }
+
+      function updateCarousel() {
+          carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+
+      // Desplazamiento automático
+      setInterval(() => {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateCarousel();
+      }, 3000); // Cambia el tiempo en milisegundos (3000 ms = 3 segundos)
+    </script>
+  
+    <script src="app.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>
